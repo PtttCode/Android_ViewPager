@@ -33,19 +33,24 @@ public class PageAdapter extends PagerAdapter
     @Override
     public boolean isViewFromObject(View view, Object object)
     {
-        return view==object;
+        return view == viewLists.get((int)Integer.parseInt(object.toString()));
+    }
+
+    @Override
+    public int getItemPosition(Object object) {
+        return super.getItemPosition(object);
     }
 
     @Override
     public Object instantiateItem(ViewGroup container,int position)
     {
         container.addView(viewLists.get(position));
-        return viewLists.get(position);
+        return position;
     }
 
     @Override
     public void destroyItem(ViewGroup container,int position,Object object)
     {
-        container.addView(viewLists.get(position));
+        container.removeView(viewLists.get(position));
     }
 }

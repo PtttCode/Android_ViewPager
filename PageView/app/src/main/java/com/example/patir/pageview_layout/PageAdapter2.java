@@ -28,14 +28,20 @@ public class PageAdapter2 extends PagerAdapter {
     @Override
     public boolean isViewFromObject(View view, Object object)
     {
-        return view == object;
+        return view == viewLists.get((int)Integer.parseInt(object.toString()));
     }
+
+    @Override
+    public int getItemPosition(Object object) {
+        return super.getItemPosition(object);
+    }
+
 
     @Override
     public Object instantiateItem(ViewGroup container, int position)
     {
         container.addView(viewLists.get(position));
-        return viewLists.get(position);
+        return position;
     }
 
     @Override
@@ -46,6 +52,16 @@ public class PageAdapter2 extends PagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return titleLists.get(position);
+        switch (position) {
+            case 0:
+                return "Page1";
+            case 1:
+                return "Page2";
+            case 2:
+                return "Page3";
+
+            default:
+                return "";
+        }
     }
 }
